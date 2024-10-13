@@ -9,19 +9,19 @@ class EditTasksScreen extends StatelessWidget {
 
   @override
 
-  /// The build method for the [EditTasksScreen].
-  ///
-  /// This method returns a [Scaffold] with a [FloatingActionButton] and a
-  /// [Column] body. The [Column] contains a [TextField] for the user to enter
-  /// the task name and a [Text] for the label. The [FloatingActionButton] is
-  /// used to save the task and navigate back to the previous screen.
-  ///
-  /// The [TextEditingController] is used to get the text from the [TextField] and
-  /// assign it to the [Task] object. The [Task] object is then saved to the box
-  /// using [Box.add].
-  ///
-  /// If the [Task] is already in the box, [Task.save] is called to update the
-  /// task in the box.
+  /// The root widget of the edit screen. It is a [Scaffold] with a
+  /// [FloatingActionButton] and a [SafeArea] as its body. The [SafeArea] is
+  /// divided into two parts. The first part is a [Container] with a gradient
+  /// decoration and a [Column] containing a [Row] with a back arrow and the
+  /// screen title, and a [TextField] with a plus icon. The second part is an
+  /// [Expanded] widget containing a [ListView] with all the tasks in the box.
+  /// The [ListView] is built using a [ValueListenableBuilder] which listens to
+  /// the box's [Listenable] and rebuilds the [ListView] whenever the box's
+  /// values change. The [ListView] is divided into two parts. The first part is
+  /// a [Row] containing a [Text] with the current date and a [Container] with a
+  /// colored bar. The second part is a list of all the tasks in the box, with
+  /// each task represented by a [TaskItem] widget. The [TaskItem] widget is a
+  /// [Padding] with a [Task] widget as its child.
   Widget build(BuildContext context) {
     TextEditingController controller = TextEditingController();
     return SafeArea(
