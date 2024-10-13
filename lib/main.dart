@@ -5,6 +5,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 const taskBoxName = 'task';
+
+/// Initialize Hive, register the adapters for the types used in the boxes,
+/// open the box for tasks, and run the app.
 void main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(TaskAdapter());

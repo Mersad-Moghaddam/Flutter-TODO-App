@@ -7,6 +7,14 @@ class MyChecBox extends StatelessWidget {
   const MyChecBox({super.key, required this.isChecked});
 
   @override
+
+  /// A widget that displays a checkmark in a circle if [isChecked] is true
+  /// and a hollow circle if [isChecked] is false.
+  ///
+  /// The circle is 24x24 and the checkmark is 16x16. The color of the circle
+  /// and the checkmark is [primaryColor].
+  ///
+  /// The [isChecked] parameter is required.
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(4),

@@ -10,6 +10,20 @@ class HommeScreen extends StatelessWidget {
   const HommeScreen({super.key});
 
   @override
+
+  /// The root widget of the home screen. It is a [Scaffold] with a
+  /// [FloatingActionButton] and a [SafeArea] as its body. The [SafeArea] is
+  /// divided into two parts. The first part is a [Container] with a gradient
+  /// decoration and a [Column] containing a [Row] with a title and a share
+  /// icon, and a [TextField] with a search icon. The second part is an
+  /// [Expanded] widget containing a [ListView] with all the tasks in the box.
+  /// The [ListView] is built using a [ValueListenableBuilder] which listens to
+  /// the box's [Listenable] and rebuilds the [ListView] whenever the box's
+  /// values change. The [ListView] is divided into two parts. The first part is
+  /// a [Row] containing a [Text] with the current date and a [Container] with a
+  /// colored bar. The second part is a list of all the tasks in the box, with
+  /// each task represented by a [TaskItem] widget. The [TaskItem] widget is a
+  /// [Padding] with a [Task] widget as its child.
   Widget build(BuildContext context) {
     Box<Task> box = Hive.box(taskBoxName);
     return Scaffold(
