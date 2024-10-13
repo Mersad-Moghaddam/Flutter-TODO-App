@@ -1,9 +1,6 @@
 # flutter_todo
 
-A new Flutter project.
-<img src="assets/images/EditScreen.png" height="500em" />&nbsp;
-<img src="assets/images/TODO_mainScreen.png" height="500em" />&nbsp;
-<img src="assets/images/TODO.png" height="500em" />&nbsp;
+<img src="assets/images/EditScreen.png" height="500em" />&nbsp;<img src="assets/images/TODO_mainScreen.png" height="500em" />&nbsp;<img src="assets/images/TODO.png" height="500em" />&nbsp;
 ## Getting Started
 
 This project is a starting point for a Flutter application.
