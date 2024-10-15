@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_todo/data/data.dart';
+import 'package:flutter_todo/data/entity/data.dart';
 import 'package:flutter_todo/widgets/check_box.dart';
 
 class TaskItem extends StatefulWidget {
@@ -8,7 +8,7 @@ class TaskItem extends StatefulWidget {
     required this.task,
   });
 
-  final Task task;
+  final TaskEntity task;
 
   @override
   State<TaskItem> createState() => _TaskItemState();

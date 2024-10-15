@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_todo/data/data.dart';
+import 'package:flutter_todo/data/entity/data.dart';
 import 'package:flutter_todo/main.dart';
 import 'package:flutter_todo/widgets/priority_check_box.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class EditTasksScreen extends StatefulWidget {
-  final Task task;
+  final TaskEntity task;
   const EditTasksScreen({super.key, required this.task});
 
   @override
@@ -28,7 +28,7 @@ class _EditTasksScreenState extends State<EditTasksScreen> {
   /// a [Row] containing a [Text] with the current date and a [Container] with a
   /// colored bar. The second part is a list of all the tasks in the box, with
   /// each task represented by a [TaskItem] widget. The [TaskItem] widget is a
-  /// [Padding] with a [Task] widget as its child.
+  /// [Padding] with a [TaskEntity] widget as its child.
   Widget build(BuildContext context) {
     TextEditingController controller = TextEditingController();
     return SafeArea(
@@ -39,13 +39,13 @@ class _EditTasksScreenState extends State<EditTasksScreen> {
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         floatingActionButton: FloatingActionButton.extended(
           onPressed: () {
-            final task = Task();
+            final task = TaskEntity();
             task.name = controller.text;
             task.priority = Priority.low;
             if (task.isInBox) {
               task.save();
             } else {
-              final Box<Task> box = Hive.box(taskBoxName);
+              final Box<TaskEntity> box = Hive.box(taskBoxName);
               box.add(task);
             }
 

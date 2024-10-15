@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_todo/data/data.dart';
+import 'package:flutter_todo/data/entity/data.dart';
 import 'package:flutter_todo/main.dart';
-import 'package:flutter_todo/presentation/edit_task.dart';
+import 'package:flutter_todo/view/edit_task.dart';
 import 'package:flutter_todo/widgets/task_item.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -23,9 +23,9 @@ class HommeScreen extends StatelessWidget {
   /// a [Row] containing a [Text] with the current date and a [Container] with a
   /// colored bar. The second part is a list of all the tasks in the box, with
   /// each task represented by a [TaskItem] widget. The [TaskItem] widget is a
-  /// [Padding] with a [Task] widget as its child.
+  /// [Padding] with a [TaskEntity] widget as its child.
   Widget build(BuildContext context) {
-    Box<Task> box = Hive.box(taskBoxName);
+    Box<TaskEntity> box = Hive.box(taskBoxName);
     return SafeArea(
       bottom: false,
       left: false,
@@ -38,7 +38,7 @@ class HommeScreen extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                       builder: (context) => EditTasksScreen(
-                            task: Task(),
+                            task: TaskEntity(),
                           )));
             },
             label: const Row(
@@ -129,7 +129,7 @@ class HommeScreen extends StatelessWidget {
                 ),
               ),
               Expanded(
-                child: ValueListenableBuilder<Box<Task>>(
+                child: ValueListenableBuilder<Box<TaskEntity>>(
                   builder: (context, box, child) {
                     return ListView.builder(
                         padding: const EdgeInsets.fromLTRB(16, 10, 16, 100),
@@ -190,7 +190,8 @@ class HommeScreen extends StatelessWidget {
                               ),
                             );
                           } else {
-                            final Task task = box.values.toList()[index - 1];
+                            final TaskEntity task =
+                                box.values.toList()[index - 1];
                             return Padding(
                               padding: const EdgeInsets.all(5.0),
                               child: TaskItem(task: task),
