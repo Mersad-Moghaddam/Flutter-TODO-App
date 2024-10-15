@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_todo/data/data.dart';
-import 'package:flutter_todo/presentation/home_screen.dart';
+import 'package:flutter_todo/view/home_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 

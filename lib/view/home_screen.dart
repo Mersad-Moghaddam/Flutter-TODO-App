@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_todo/data/data.dart';
 import 'package:flutter_todo/main.dart';
-import 'package:flutter_todo/presentation/edit_task.dart';
+import 'package:flutter_todo/view/edit_task.dart';
 import 'package:flutter_todo/widgets/task_item.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
