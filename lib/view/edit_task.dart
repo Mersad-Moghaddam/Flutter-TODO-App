@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_todo/data/entity/data.dart';
+import 'package:flutter_todo/data/repository/repository.dart';
 import 'package:flutter_todo/main.dart';
 import 'package:flutter_todo/widgets/priority_check_box.dart';
-import 'package:hive_flutter/hive_flutter.dart';
+import 'package:provider/provider.dart';
 
 class EditTasksScreen extends StatefulWidget {
   final TaskEntity task;
@@ -16,19 +17,19 @@ class EditTasksScreen extends StatefulWidget {
 class _EditTasksScreenState extends State<EditTasksScreen> {
   @override
 
-  /// The root widget of the edit screen. It is a [Scaffold] with a
-  /// [FloatingActionButton] and a [SafeArea] as its body. The [SafeArea] is
-  /// divided into two parts. The first part is a [Container] with a gradient
-  /// decoration and a [Column] containing a [Row] with a back arrow and the
-  /// screen title, and a [TextField] with a plus icon. The second part is an
-  /// [Expanded] widget containing a [ListView] with all the tasks in the box.
-  /// The [ListView] is built using a [ValueListenableBuilder] which listens to
-  /// the box's [Listenable] and rebuilds the [ListView] whenever the box's
-  /// values change. The [ListView] is divided into two parts. The first part is
-  /// a [Row] containing a [Text] with the current date and a [Container] with a
-  /// colored bar. The second part is a list of all the tasks in the box, with
-  /// each task represented by a [TaskItem] widget. The [TaskItem] widget is a
-  /// [Padding] with a [TaskEntity] widget as its child.
+  /// The main widget of the edit task screen. It is a [SafeArea] with a
+  /// [Scaffold] as its child. The [Scaffold] has a [FloatingActionButton] and an
+  /// [AppBar] as its app bar. The [AppBar] has a title and a leading icon. The
+  /// leading icon is a back arrow. The [FloatingActionButton] is used to save
+  /// changes to the task. The [FloatingActionButton] is an [InkWell] with a
+  /// [Text] and an [Icon] as its child. The [Text] is "Save Changes" and the
+  /// [Icon] is a checkmark. The [Scaffold]'s body is a [Column] with two
+  /// children. The first child is a [Padding] with a [Flex] as its child. The
+  /// [Flex] has three children, which are [PriorityCheckBox] widgets. The
+  /// second child is a [Padding] with a [Container] as its child. The [Container]
+  /// is a [TextField] with a prefix icon and a label. The prefix icon is a plus
+  /// icon and the label is "Add Task for Today". The [TextField] is used to
+  /// enter a new task.
   Widget build(BuildContext context) {
     TextEditingController controller = TextEditingController();
     return SafeArea(
@@ -42,12 +43,10 @@ class _EditTasksScreenState extends State<EditTasksScreen> {
             final task = TaskEntity();
             task.name = controller.text;
             task.priority = Priority.low;
-            if (task.isInBox) {
-              task.save();
-            } else {
-              final Box<TaskEntity> box = Hive.box(taskBoxName);
-              box.add(task);
-            }
+
+            final repository =
+                Provider.of<Repository<TaskEntity>>(context, listen: false);
+            repository.createOrUpdate(task);
 
             Navigator.pop(context);
           },

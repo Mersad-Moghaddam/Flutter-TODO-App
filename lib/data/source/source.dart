@@ -5,4 +5,5 @@ abstract class DataSource<T> {
   Future<void> deleteById(int id);
   Future<void> delete(T data);
   Future<T> createOrUpdate(T data);
+  int getCount();
 }

@@ -17,15 +17,15 @@ class TaskItem extends StatefulWidget {
 class _TaskItemState extends State<TaskItem> {
   @override
 
-  /// A widget for a single task in the list of tasks.
+  /// A widget representing a single task.
   ///
-  /// It has a checkbox on the left, and the task name on the right.
+  /// It shows a [MyChecBox] and a [Text] of the task's name. The [MyChecBox] is
+  /// checked if the task is completed, and unchecked otherwise. If the task is
+  /// completed, the [Text] is struckthrough. The entire widget is wrapped in a
+  /// [InkWell] so that the user can tap on it to toggle the task's completion
+  /// status.
   ///
-  /// The checkbox is interactive, and tapping on it will change the task's
-  /// [isCompleted] property.
-  ///
-  /// The widget also displays a strikethrough over the task's name if the task
-  /// is completed.
+  /// The widget is decorated with a shadow and a rounded corner.
   Widget build(BuildContext context) {
     ThemeData theme = Theme.of(context);
     return InkWell(
