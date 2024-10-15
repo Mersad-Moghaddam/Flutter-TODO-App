@@ -3,7 +3,8 @@ import 'package:hive_flutter/hive_flutter.dart';
 part 'data.g.dart';
 
 @HiveType(typeId: 0)
-class Task extends HiveObject {
+class TaskEntity extends HiveObject {
+  int id = -1;
   @HiveField(0)
   String name = '';
   @HiveField(1)

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_todo/data/data.dart';
+import 'package:flutter_todo/data/entity/data.dart';
 import 'package:flutter_todo/view/home_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -12,7 +12,7 @@ void main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(TaskAdapter());
   Hive.registerAdapter(PriorityAdapter());
-  await Hive.openBox<Task>(taskBoxName);
+  await Hive.openBox<TaskEntity>(taskBoxName);
   runApp(const MyApp());
 }
 
