@@ -8,6 +8,14 @@ class ProrityBoxShape extends StatelessWidget {
       {super.key, required this.isChecked, required this.color});
 
   @override
+
+  /// A widget that displays a checkmark in a circle if [isChecked] is true
+  /// and a hollow circle if [isChecked] is false.
+  ///
+  /// The circle is 16x16 and the checkmark is 10x10. The color of the circle
+  /// and the checkmark is [color].
+  ///
+  /// The [isChecked] parameter is required.
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(4),
