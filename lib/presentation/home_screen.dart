@@ -37,7 +37,9 @@ class HommeScreen extends StatelessWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const EditTasksScreen()));
+                      builder: (context) => EditTasksScreen(
+                            task: Task(),
+                          )));
             },
             label: const Row(
               children: [

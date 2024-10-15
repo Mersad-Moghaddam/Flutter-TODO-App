@@ -2,11 +2,18 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_todo/data/data.dart';
 import 'package:flutter_todo/main.dart';
+import 'package:flutter_todo/widgets/priority_check_box.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-class EditTasksScreen extends StatelessWidget {
-  const EditTasksScreen({super.key});
+class EditTasksScreen extends StatefulWidget {
+  final Task task;
+  const EditTasksScreen({super.key, required this.task});
 
+  @override
+  State<EditTasksScreen> createState() => _EditTasksScreenState();
+}
+
+class _EditTasksScreenState extends State<EditTasksScreen> {
   @override
 
   /// The root widget of the edit screen. It is a [Scaffold] with a
@@ -57,54 +64,70 @@ class EditTasksScreen extends StatelessWidget {
             ],
           ),
         ),
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          foregroundColor: primaryTextColor,
+          elevation: 0,
+          title: const Text(
+            "Edit Task",
+            textAlign: TextAlign.start,
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
         body: SafeArea(
           child: Column(
             children: [
-              Container(
-                height: 112,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      primaryColor,
-                      primaryColor.withOpacity(0.5),
-                    ],
-                  ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          InkWell(
-                            onTap: () {
-                              Navigator.pop(context);
-                            },
-                            child: const Icon(
-                              CupertinoIcons.back,
-                              color: Colors.white,
-                              size: 30,
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 94,
-                          ),
-                          const Text("Add Task",
-                              style: TextStyle(
-                                  fontSize: 25,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold)),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                    ],
-                  ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Flex(
+                  direction: Axis.horizontal,
+                  children: [
+                    Flexible(
+                        flex: 1,
+                        child: PriorityCheckBox(
+                          label: 'High',
+                          color: Colors.red,
+                          isChecked: widget.task.priority == Priority.high
+                              ? true
+                              : false,
+                          onTap: () {
+                            widget.task.priority = Priority.high;
+                          },
+                        )),
+                    const SizedBox(
+                      width: 8,
+                    ),
+                    Flexible(
+                        flex: 1,
+                        child: PriorityCheckBox(
+                          label: 'Normal',
+                          color: Colors.orangeAccent,
+                          isChecked: widget.task.priority == Priority.medium
+                              ? true
+                              : false,
+                          onTap: () {
+                            widget.task.priority = Priority.medium;
+                          },
+                        )),
+                    const SizedBox(
+                      width: 8,
+                    ),
+                    Flexible(
+                        flex: 1,
+                        child: PriorityCheckBox(
+                          label: 'Low',
+                          color: Colors.blue,
+                          isChecked: widget.task.priority == Priority.low
+                              ? true
+                              : false,
+                          onTap: () {
+                            widget.task.priority = Priority.low;
+                          },
+                        )),
+                  ],
                 ),
               ),
               Padding(
